@@ -1,0 +1,77 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyProject" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <!--<style name="Theme.MyProject" parent="Base.Theme.MyProject" />-->
+
+
+    <style name="Theme.MyProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_40</item>
+        <item name="colorOnPrimary">@color/primary_100</item>
+        <item name="colorPrimaryContainer">@color/primary_90</item>
+        <item name="colorOnPrimaryContainer">@color/primary_10</item>
+        <item name="colorPrimaryFixed">@color/primary_90</item>
+        <item name="colorOnPrimaryFixed">@color/primary_10</item>
+        <item name="colorPrimaryFixedDim">@color/primary_80</item>
+        <item name="colorOnPrimaryFixedVariant">@color/primary_30</item>
+        <item name="colorPrimaryInverse">@color/primary_80</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary_40</item>
+        <item name="colorOnSecondary">@color/secondary_100</item>
+        <item name="colorSecondaryContainer">@color/secondary_90</item>
+        <item name="colorOnSecondaryContainer">@color/secondary_10</item>
+        <item name="colorSecondaryFixed">@color/secondary_90</item>
+        <item name="colorOnSecondaryFixed">@color/secondary_10</item>
+        <item name="colorSecondaryFixedDim">@color/secondary_80</item>
+        <item name="colorOnSecondaryFixedVariant">@color/secondary_30</item>
+
+        <!-- Tertiary brand color. -->
+        <item name="colorTertiary">@color/tertiary_40</item>
+        <item name="colorOnTertiary">@color/tertiary_100</item>
+        <item name="colorTertiaryContainer">@color/tertiary_90</item>
+        <item name="colorOnTertiaryContainer">@color/tertiary_10</item>
+        <item name="colorTertiaryFixed">@color/tertiary_90</item>
+        <item name="colorOnTertiaryFixed">@color/tertiary_10</item>
+        <item name="colorTertiaryFixedDim">@color/tertiary_80</item>
+        <item name="colorOnTertiaryFixedVariant">@color/tertiary_30</item>
+
+        <!-- Error brand color. -->
+        <item name="colorError">@color/error_40</item>
+        <item name="colorOnError">@color/error_100</item>
+        <item name="colorErrorContainer">@color/error_90</item>
+        <item name="colorOnErrorContainer">@color/error_10</item>
+
+        <!-- Surface brand color. -->
+        <item name="colorSurface">@color/neutral_98</item>
+        <item name="colorOnSurface">@color/neutral_10</item>
+        <item name="colorSurfaceVariant">@color/neutral_variant_90</item>
+        <item name="colorOnSurfaceVariant">@color/neutral_variant_30</item>
+        <item name="colorSurfaceContainerHighest">@color/neutral_90</item>
+        <item name="colorSurfaceContainerHigh">@color/neutral_92</item>
+        <item name="colorSurfaceContainer">@color/neutral_94</item>
+        <item name="colorSurfaceContainerLow">@color/neutral_96</item>
+        <item name="colorSurfaceContainerLowest">@color/neutral_100</item>
+        <item name="colorSurfaceInverse">@color/neutral_20</item>
+        <item name="colorOnSurfaceInverse">@color/neutral_95</item>
+        <item name="backgroundColor">@color/neutral_98</item>
+        <item name="background">@color/neutral_98</item>
+        <item name="colorOnBackground">@color/neutral_10</item>
+        <item name="colorSurfaceBright">@color/neutral_98</item>
+        <item name="colorSurfaceDim">@color/neutral_87</item>
+        <item name="android:shadowColor">@color/neutral_0</item>
+
+        <!-- Outline brand color. -->
+        <item name="colorOutline">@color/neutral_variant_50</item>
+        <item name="colorOutlineVariant">@color/neutral_variant_80</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+</resources>

@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">MyProject</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="fullname">Полное имя</string>
+    <string name="email">Email</string>
+    <string name="authorization">Авторизация</string>
+    <string name="signup">Регистрация</string>
+    <string name="enter">Войти</string>
+    <string name="create_acc">Создать аккаунт</string>
+    <string name="dont_have_acc">Нет аккаунта?</string>
+    <string name="have_acc">Уже есть аккаунт?</string>
+    <string name="pref_key">user_pref</string>
+    <string name="movies">Фильмы</string>
+    <string name="tickets">Билеты</string>
+    <string name="profile">Профиль</string>
+    <string name="edit">Изменить</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="title_movie">Название фильма</string>
+    <string name="todo">TODO</string>
+    <string name="title_date">Дата:</string>
+    <string name="title_duration">Время:</string>
+    <string name="title_price">Цена:</string>
+    <string name="title_hall">Зал:</string>
+    <string name="title_row">Ряд:</string>
+    <string name="title_number">Место:</string>
+    <string name="return_ticket">Вернуть билет</string>
+
+</resources>

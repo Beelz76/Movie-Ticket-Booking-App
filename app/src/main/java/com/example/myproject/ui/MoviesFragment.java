@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -20,11 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+
 import com.example.myproject.LogInActivity;
-import com.example.myproject.MainActivity;
 import com.example.myproject.PutData;
 import com.example.myproject.R;
 import com.example.myproject.adapters.MovieAdapter;
+import com.example.myproject.databinding.FragmentMoviesBinding;
 import com.example.myproject.models.Movie;
 
 import org.json.JSONArray;
@@ -32,11 +31,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MoviesFragment extends Fragment {
+    FragmentMoviesBinding binding;
     private ArrayList<Movie> movies;
-    private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
 
     public MoviesFragment() {
@@ -52,7 +50,14 @@ public class MoviesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false);
+        binding = FragmentMoviesBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     @Override
@@ -66,8 +71,7 @@ public class MoviesFragment extends Fragment {
             navigateToLogin();
         }
 
-        recyclerView = view.findViewById(R.id.recyclerViewMovie);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        binding.recyclerViewMovie.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         movies = new ArrayList<>();
         loadMovies();
@@ -117,7 +121,7 @@ public class MoviesFragment extends Fragment {
                         throw new RuntimeException(e);
                     }
                     movieAdapter = new MovieAdapter(getContext(), movies);
-                    recyclerView.setAdapter(movieAdapter);
+                    binding.recyclerViewMovie.setAdapter(movieAdapter);
                 }
             }
         });

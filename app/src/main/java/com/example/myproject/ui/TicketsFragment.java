@@ -1,6 +1,5 @@
 package com.example.myproject.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,20 +21,18 @@ import android.widget.Toast;
 import com.example.myproject.LogInActivity;
 import com.example.myproject.PutData;
 import com.example.myproject.R;
-import com.example.myproject.adapters.MovieAdapter;
 import com.example.myproject.adapters.TicketAdapter;
-import com.example.myproject.models.Movie;
+import com.example.myproject.databinding.FragmentTicketsBinding;
 import com.example.myproject.models.Ticket;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TicketsFragment extends Fragment {
+    FragmentTicketsBinding binding;
     private ArrayList<Ticket> tickets;
     private RecyclerView recyclerView;
     private TicketAdapter ticketAdapter;
@@ -55,7 +51,14 @@ public class TicketsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tickets, container, false);
+        binding = FragmentTicketsBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     @Override
@@ -69,8 +72,7 @@ public class TicketsFragment extends Fragment {
             navigateToLogin();
         }
 
-        recyclerView = view.findViewById(R.id.recyclerViewTicket);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         tickets = new ArrayList<>();
         loadTickets(userId);
@@ -122,7 +124,7 @@ public class TicketsFragment extends Fragment {
                         throw new RuntimeException(e);
                     }
                     ticketAdapter = new TicketAdapter(getContext(), tickets);
-                    recyclerView.setAdapter(ticketAdapter);
+                    binding.recyclerView.setAdapter(ticketAdapter);
                 }
             }
         });

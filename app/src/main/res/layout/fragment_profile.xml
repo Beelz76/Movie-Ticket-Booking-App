@@ -29,12 +29,12 @@
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:src="@drawable/baseline_logout_24"
-        android:tint="#555555"
         app:layout_constraintStart_toEndOf="@+id/textProfile"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#555555" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLayoutFullnameProfile"
+        android:id="@+id/inputLayoutFullname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textProfile">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputFullnameProfile"
+            android:id="@+id/inputFullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:errorEnabled="true" />
@@ -58,7 +58,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLayoutEmailProfile"
+        android:id="@+id/inputLayoutEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,17 +70,17 @@
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutFullnameProfile">
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutFullname">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputEmailProfile"
+            android:id="@+id/inputEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLayoutLoginProfile"
+        android:id="@+id/inputLayoutLogin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,10 +93,10 @@
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutEmailProfile">
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputLoginProfile"
+            android:id="@+id/inputLogin"
             app:errorEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -104,7 +104,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLayoutPasswordProfile"
+        android:id="@+id/inputLayoutPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,10 +117,10 @@
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutLoginProfile">
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutLogin">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputPasswordProfile"
+            android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
@@ -128,7 +128,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLayoutConfirmPasswordProfile"
+        android:id="@+id/inputLayoutConfirmPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -141,10 +141,10 @@
         app:startIconDrawable="@drawable/baseline_lock_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutPasswordProfile">
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputConfirmPasswordProfile"
+            android:id="@+id/inputConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
@@ -161,7 +161,7 @@
         android:text="@string/edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutLoginProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutLogin" />
 
     <Button
         android:id="@+id/buttonCancel"
@@ -172,7 +172,7 @@
         android:layout_marginTop="5dp"
         android:text="@string/cancel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutConfirmPasswordProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutConfirmPassword" />
 
     <Button
         android:id="@+id/buttonSave"
@@ -182,6 +182,6 @@
         android:layout_marginTop="4dp"
         android:text="@string/save"
         app:layout_constraintStart_toEndOf="@+id/buttonCancel"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayoutConfirmPasswordProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutConfirmPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

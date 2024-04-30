@@ -1,17 +1,17 @@
 package com.example.myproject.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myproject.MovieDetailsActivity;
 import com.example.myproject.R;
+import com.example.myproject.databinding.MovieItemBinding;
 import com.example.myproject.models.Movie;
 
 import java.util.ArrayList;
@@ -27,21 +27,34 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @NonNull
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
-        return new MovieViewHolder(view);
+    public MovieAdapter.MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MovieViewHolder(MovieItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = movies.get(position);
-        holder.movieTitle.setText(movie.getTitle());
+        holder.binding.textMovieTitle.setText(movie.getTitle());
 
-        Glide.with(holder.movieImage.getContext())
+        Glide.with(holder.binding.imageMovie.getContext())
                 .load(movie.getImage())
                 .placeholder(R.drawable.ic_baseline_image_24)
                 .error(R.drawable.ic_baseline_image_24)
-                .into(holder.movieImage);
+                .into(holder.binding.imageMovie);
+
+        holder.binding.cardMovie.setOnClickListener(v -> {
+            Intent intent = new Intent(context, MovieDetailsActivity.class);
+            intent.putExtra("movieId", movie.getMovieId());
+            intent.putExtra("title", movie.getTitle());
+            intent.putExtra("releaseYear", movie.getReleaseYear());
+            intent.putExtra("duration", movie.getDuration());
+            intent.putExtra("description", movie.getDescription());
+            intent.putExtra("image", movie.getImage());
+            intent.putExtra("directors", movie.getDirectors());
+            intent.putExtra("genres", movie.getGenres());
+            intent.putExtra("countries", movie.getCountries());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -50,12 +63,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        TextView movieTitle;
-        ImageView movieImage;
-        public MovieViewHolder(@NonNull View view) {
-            super(view);
-            movieTitle = view.findViewById(R.id.textMovieTitle);
-            movieImage = view.findViewById(R.id.imageMovie);
+        MovieItemBinding binding;
+
+        public MovieViewHolder(MovieItemBinding b) {
+            super(b.getRoot());
+            binding = b;
         }
     }
 

@@ -6,45 +6,28 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.example.myproject.databinding.ActivitySignUpBinding;
 
 public class SignUpActivity extends AppCompatActivity {
-    private TextInputEditText fullnameInput, emailInput, loginInput, passwordInput;
-    private Button signupButton;
-    private TextView loginText;
-    private TextInputLayout fullnameLayout, emailLayout, loginLayout, passwordLayout;
+    ActivitySignUpBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        fullnameInput = findViewById(R.id.inputFullname);
-        emailInput = findViewById(R.id.inputEmail);
-        loginInput = findViewById(R.id.inputLoginSignup);
-        passwordInput = findViewById(R.id.inputPasswordSignup);
-        signupButton = findViewById(R.id.buttonSignup);
-        loginText = findViewById(R.id.textLoginSignup);
-        fullnameLayout = findViewById(R.id.inputLayoutFullname);
-        emailLayout = findViewById(R.id.inputLayoutEmail);
-        loginLayout = findViewById(R.id.inputLayoutLoginSignup);
-        passwordLayout = findViewById(R.id.inputLayoutPasswordSignup);
+        binding.textLogin.setOnClickListener(v -> navigateToLogin());
 
-        loginText.setOnClickListener(v -> navigateToLogin());
-
-        signupButton.setOnClickListener(v -> {
-            String fullname = fullnameInput.getText().toString();
-            String email = emailInput.getText().toString();
-            String login = loginInput.getText().toString();
-            String password = passwordInput.getText().toString();
+        binding.buttonSignup.setOnClickListener(v -> {
+            String fullname = binding.inputFullname.getText().toString();
+            String email = binding.inputEmail.getText().toString();
+            String login = binding.inputLogin.getText().toString();
+            String password = binding.inputPassword.getText().toString();
 
             validateInputs(fullname, login, password);
 
@@ -62,21 +45,21 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void validateInputs(String fullname, String login, String password) {
         if (fullname.isEmpty()) {
-            fullnameLayout.setError("Заполните поле");
+            binding.inputLayoutFullname.setError("Заполните поле");
         } else {
-            fullnameLayout.setError(null);
+            binding.inputLayoutFullname.setError(null);
         }
 
         if (login.isEmpty()) {
-            loginLayout.setError("Заполните поле");
+            binding.inputLayoutLogin.setError("Заполните поле");
         } else {
-            loginLayout.setError(null);
+            binding.inputLayoutLogin.setError(null);
         }
 
         if (password.isEmpty()) {
-            passwordLayout.setError("Заполните поле");
+            binding.inputLayoutPassword.setError("Заполните поле");
         } else {
-            passwordLayout.setError(null);
+            binding.inputLayoutPassword.setError(null);
         }
     }
 

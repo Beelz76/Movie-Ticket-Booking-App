@@ -6,55 +6,41 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.example.myproject.databinding.ActivityLogInBinding;
 
 public class LogInActivity extends AppCompatActivity {
-    private TextInputEditText loginInput, passwordInput;
-    private Button loginButton;
-    private TextView signupText;
-    private TextInputLayout loginLayout, passwordLayout;
+    ActivityLogInBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        binding = ActivityLogInBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear().apply();
 
-        loginInput = findViewById(R.id.inputLogin);
-        passwordInput = findViewById(R.id.inputPassword);
-        loginButton = findViewById(R.id.buttonLogin);
-        signupText = findViewById(R.id.textSignup);
-        loginLayout = findViewById(R.id.inputLayoutLogin);
-        passwordLayout = findViewById(R.id.inputLayoutPassword);
+        binding.textSignup.setOnClickListener(v -> navigateToSignUp());
 
-        signupText.setOnClickListener(v -> navigateToSignUp());
-
-        loginButton.setOnClickListener(v -> {
-            String login = loginInput.getText().toString();
-            String password = passwordInput.getText().toString();
+        binding.buttonLogin.setOnClickListener(v -> {
+            String login = binding.inputLogin.getText().toString();
+            String password = binding.inputPassword.getText().toString();
 
             if (login.isEmpty()) {
-                loginLayout.setError("Заполните поле");
+                binding.inputLayoutLogin.setError("Заполните поле");
             } else {
-                loginLayout.setError(null);
+                binding.inputLayoutLogin.setError(null);
             }
 
             if (password.isEmpty()) {
-                passwordLayout.setError("Заполните поле");
+                binding.inputLayoutPassword.setError("Заполните поле");
             } else {
-                passwordLayout.setError(null);
+                binding.inputLayoutPassword.setError(null);
             }
 
             if (!login.isEmpty() && !password.isEmpty()) {

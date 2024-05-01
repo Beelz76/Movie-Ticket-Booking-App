@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myproject.databinding.ActivityLogInBinding;
 
 public class LogInActivity extends AppCompatActivity {
-    ActivityLogInBinding binding;
+    private ActivityLogInBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

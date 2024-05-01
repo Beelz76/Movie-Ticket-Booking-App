@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myproject.databinding.ActivitySignUpBinding;
 
 public class SignUpActivity extends AppCompatActivity {
-    ActivitySignUpBinding binding;
+    private ActivitySignUpBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

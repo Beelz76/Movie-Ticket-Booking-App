@@ -34,4 +34,8 @@
     <string name="movie_genres">Жанры:</string>
     <string name="movie_countries">Страны:</string>
     <string name="close">Закрыть</string>
+    <string name="choice_date">Выберите дату</string>
+    <string name="choice_time">Выберите Время</string>
+    <string name="buy_ticket">Купить билет</string>
+    <string name="seat_choice">Выбрать место</string>
 </resources>

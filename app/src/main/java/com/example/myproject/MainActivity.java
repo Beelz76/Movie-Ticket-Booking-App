@@ -12,7 +12,6 @@ import com.example.myproject.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
-
     private ActivityMainBinding binding;
 
     @Override

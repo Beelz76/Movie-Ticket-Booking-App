@@ -33,8 +33,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MoviesFragment extends Fragment {
-    FragmentMoviesBinding binding;
-    private ArrayList<Movie> movies;
+    private FragmentMoviesBinding binding;
+    private ArrayList<Movie> movies = new ArrayList<>();
     private MovieAdapter movieAdapter;
 
     public MoviesFragment() {
@@ -73,7 +73,6 @@ public class MoviesFragment extends Fragment {
 
         binding.recyclerViewMovie.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        movies = new ArrayList<>();
         loadMovies();
     }
 

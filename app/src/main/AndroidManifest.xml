@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".SeatsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ScreeningsActivity"
+            android:exported="false" />
+        <activity
             android:name=".LogInActivity"
             android:exported="true">
             <intent-filter>
@@ -29,7 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".MovieDetailsActivity"
             android:exported="false" />

@@ -7,7 +7,6 @@
 
     <!--<style name="Theme.MyProject" parent="Base.Theme.MyProject" />-->
 
-
     <style name="Theme.MyProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_40</item>

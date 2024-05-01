@@ -32,8 +32,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class TicketsFragment extends Fragment {
-    FragmentTicketsBinding binding;
-    private ArrayList<Ticket> tickets;
+    private FragmentTicketsBinding binding;
+    private ArrayList<Ticket> tickets = new ArrayList<>();
     private RecyclerView recyclerView;
     private TicketAdapter ticketAdapter;
 
@@ -74,7 +74,6 @@ public class TicketsFragment extends Fragment {
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        tickets = new ArrayList<>();
         loadTickets(userId);
     }
 
@@ -91,37 +90,42 @@ public class TicketsFragment extends Fragment {
             if (putData.startPut()) {
                 if (putData.onComplete()) {
                     String result = putData.getResult();
-                    JSONArray jsonArray = null;
-                    try {
-                        jsonArray = new JSONArray(result);
-                        if (jsonArray.length() > 0) {
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    if (result.equals("Get User Tickets Failed")) {
+                        binding.textError.setText("У вас нет билетов");
+                    }
+                    else {
+                        JSONArray jsonArray = null;
+                        try {
+                            jsonArray = new JSONArray(result);
+                            if (jsonArray.length() > 0) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                Ticket ticket = new Ticket();
-                                ticket.setTicketId(jsonObject.getInt("TicketId"));
-                                ticket.setMovieTitle(jsonObject.getString("MovieTitle"));
-                                ticket.setMovieImage(jsonObject.getString("MovieImage"));
+                                    Ticket ticket = new Ticket();
+                                    ticket.setTicketId(jsonObject.getInt("TicketId"));
+                                    ticket.setMovieTitle(jsonObject.getString("MovieTitle"));
+                                    ticket.setMovieImage(jsonObject.getString("MovieImage"));
 
-                                String date = jsonObject.getString("Date");
-                                String[] dateParts = date.split("-");
-                                String newDate = dateParts[2] + "." + dateParts[1] + "." + dateParts[0];
-                                ticket.setDate(newDate);
+                                    String date = jsonObject.getString("Date");
+                                    String[] dateParts = date.split("-");
+                                    String newDate = dateParts[2] + "." + dateParts[1] + "." + dateParts[0];
+                                    ticket.setDate(newDate);
 
-                                ticket.setStartTime(jsonObject.getString("StartTime").substring(0, 5));
-                                ticket.setEndTime(jsonObject.getString("EndTime").substring(0, 5));
-                                ticket.setPrice(jsonObject.getInt("Price"));
-                                ticket.setHallName(jsonObject.getString("HallName"));
-                                ticket.setRow(jsonObject.getInt("SeatRow"));
-                                ticket.setNumber(jsonObject.getInt("SeatNumber"));
+                                    ticket.setStartTime(jsonObject.getString("StartTime").substring(0, 5));
+                                    ticket.setEndTime(jsonObject.getString("EndTime").substring(0, 5));
+                                    ticket.setPrice(jsonObject.getInt("Price"));
+                                    ticket.setHallName(jsonObject.getString("HallName"));
+                                    ticket.setRow(jsonObject.getInt("SeatRow"));
+                                    ticket.setNumber(jsonObject.getInt("SeatNumber"));
 
-                                tickets.add(ticket);
+                                    tickets.add(ticket);
+                                }
+                            } else {
+                                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
                         }
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
                     }
                     ticketAdapter = new TicketAdapter(getContext(), tickets);
                     binding.recyclerView.setAdapter(ticketAdapter);

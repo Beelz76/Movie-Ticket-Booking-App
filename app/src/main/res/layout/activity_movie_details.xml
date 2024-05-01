@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             tools:context=".MovieDetailsActivity">
 
-
             <ImageView
                 android:id="@+id/imageMovie"
                 android:layout_width="match_parent"

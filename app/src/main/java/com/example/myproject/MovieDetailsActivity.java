@@ -4,19 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.myproject.databinding.ActivityMovieDetailsBinding;
-import com.example.myproject.ui.MoviesFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class MovieDetailsActivity extends AppCompatActivity {
     private ActivityMovieDetailsBinding binding;
-    MaterialToolbar toolBar;
+    private MaterialToolbar toolBar;
 
     @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,25 +24,23 @@ public class MovieDetailsActivity extends AppCompatActivity {
         toolBar = findViewById(R.id.topAppBar);
         toolBar.setTitle("Подробности фильма");
         setSupportActionBar(toolBar);
-        toolBar.setNavigationOnClickListener(v -> onBackPressed());
+        toolBar.setNavigationOnClickListener(v -> finish());
         toolBar.inflateMenu(R.menu.close_menu);
-        toolBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.action_close) {
-                    Intent intent = new Intent(getApplicationContext(), MoviesFragment.class);
-                    startActivity(intent);
-                    finish();
-                    return true;
-                }
-                return false;
+        toolBar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_close) {
+                finish();
+                return true;
             }
+            return false;
         });
 
         setupMovieDetails();
 
         binding.buttonChooseScreening.setOnClickListener(v -> {
-
+            Intent intent = new Intent(getApplicationContext(), ScreeningsActivity.class);
+            intent.putExtra("movieId", getIntent().getIntExtra("movieId", 0));
+            startActivity(intent);
+            //finish();
         });
     }
 
@@ -58,27 +53,18 @@ public class MovieDetailsActivity extends AppCompatActivity {
     public void setupMovieDetails() {
         Intent intent = getIntent();
         int movieId = intent.getIntExtra("movieId", 0);
-        String title = intent.getStringExtra("title");
-        int releaseYear = intent.getIntExtra("releaseYear", 0);
-        String duration = intent.getStringExtra("duration");
-        String description = intent.getStringExtra("description");
-        String image = intent.getStringExtra("image");
-        String directors = intent.getStringExtra("directors");
-        String genres = intent.getStringExtra("genres");
-        String countries = intent.getStringExtra("countries");
-
-        binding.textMovieTitle.setText(title);
-        binding.textMovieReleaseYear.setText("Год выпуска: " + String.valueOf(releaseYear));
-        binding.textMovieDuration.setText("Время: " + duration);
-        binding.textMovieDescription.setText(description);
+        binding.textMovieTitle.setText(intent.getStringExtra("title"));
+        binding.textMovieReleaseYear.setText("Год выпуска: " + intent.getIntExtra("releaseYear", 0));
+        binding.textMovieDuration.setText("Время: " + intent.getStringExtra("duration"));
+        binding.textMovieDescription.setText(intent.getStringExtra("description"));
         Glide.with(this)
-                .load(image)
+                .load(intent.getStringExtra("image"))
                 .placeholder(R.drawable.ic_baseline_image_24)
                 .error(R.drawable.ic_baseline_image_24)
                 .into(binding.imageMovie);
-        binding.textMovieDirectors.setText("Режиссер: " + directors);
-        binding.textMovieGenres.setText("Жанры: " + genres);
-        binding.textMovieCountries.setText("Страны: " + countries);
+        binding.textMovieDirectors.setText("Режиссер: " + intent.getStringExtra("directors"));
+        binding.textMovieGenres.setText("Жанры: " + intent.getStringExtra("genres"));
+        binding.textMovieCountries.setText("Страны: " + intent.getStringExtra("countries"));
     }
 
 }

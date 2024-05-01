@@ -26,7 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ProfileFragment extends Fragment {
-    FragmentProfileBinding binding;
+    private FragmentProfileBinding binding;
     private String currentFullName, currentEmail, currentLogin, currentPassword, currentConfirmPassword;
 
     public ProfileFragment() {

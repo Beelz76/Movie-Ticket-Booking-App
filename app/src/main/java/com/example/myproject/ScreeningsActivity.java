@@ -25,7 +25,7 @@ import java.util.HashSet;
 public class ScreeningsActivity extends AppCompatActivity {
     private ActivityScreeningsBinding binding;
     private MaterialToolbar toolBar;
-    private ArrayList<Screening> screenings = new ArrayList<>();
+    private ArrayList<Screening> screenings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +46,18 @@ public class ScreeningsActivity extends AppCompatActivity {
             return false;
         });
 
+        screenings = new ArrayList<>();
         loadScreenings();
 
         binding.buttonChooseSeat.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), SeatsActivity.class);
-            intent.putExtra("screeningId", (Integer) binding.buttonChooseSeat.getTag());
-            //intent.putExtra("hallName", );
+            intent.putExtra("screeningId", getIntent().getIntExtra("screeningId", 0));
+            intent.putExtra("price", getIntent().getIntExtra("price", 0));
+            intent.putExtra("hallName", getIntent().getStringExtra("hallName"));
+            intent.putExtra("date", getIntent().getStringExtra("date"));
+            intent.putExtra("time", getIntent().getStringExtra("time"));
+            intent.putExtra("movieTitle", getIntent().getStringExtra("movieTitle"));
             startActivity(intent);
-            //finish();
         });
     }
 
@@ -95,8 +99,11 @@ public class ScreeningsActivity extends AppCompatActivity {
         Chip timeChip = (Chip) getLayoutInflater().inflate(R.layout.chip_item, binding.chipGroupTime, false);
         timeChip.setText(screening.getStartTime() + " - " + screening.getEndTime());
         timeChip.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            //binding.textHallName.setText(screening.getHallName());
-            binding.buttonChooseSeat.setTag(screening.getScreeningId());
+            getIntent().putExtra("screeningId", screening.getScreeningId());
+            getIntent().putExtra("price", screening.getPrice());
+            getIntent().putExtra("hallName", screening.getHallName());
+            getIntent().putExtra("date", screening.getDate());
+            getIntent().putExtra("time", buttonView.getText());
         });
         binding.chipGroupTime.addView(timeChip);
     }

@@ -1,6 +1,6 @@
 package com.example.myproject.models;
 
-public class Seat {
+public class Seat implements Comparable<Seat> {
     private int seatId;
     private int row;
     private int number;
@@ -38,5 +38,15 @@ public class Seat {
 
     public void setTaken(int taken) {
         isTaken = taken;
+    }
+
+    @Override
+    public int compareTo(Seat seat) {
+        int rowComparison = Integer.compare(row, seat.row);
+        if (rowComparison == 0) {
+            return Integer.compare(number, seat.number);
+        } else {
+            return rowComparison;
+        }
     }
 }

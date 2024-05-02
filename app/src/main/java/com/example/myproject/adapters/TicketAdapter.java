@@ -62,7 +62,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
                             tickets.remove(position);
                             notifyItemRemoved(position);
                             notifyItemRangeChanged(position, getItemCount());
-                            Toast.makeText(context.getApplicationContext(), "Вы вернули билет", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context.getApplicationContext(), "Вы вернули билет", Toast.LENGTH_SHORT).show();
                         }
                     }))
                     .setNegativeButton("Отмена", (dialog, id) -> dialog.dismiss());

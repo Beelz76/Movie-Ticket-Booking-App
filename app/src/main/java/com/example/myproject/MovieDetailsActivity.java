@@ -39,6 +39,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         binding.buttonChooseScreening.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), ScreeningsActivity.class);
             intent.putExtra("movieId", getIntent().getIntExtra("movieId", 0));
+            intent.putExtra("movieTitle", getIntent().getStringExtra("title"));
             startActivity(intent);
             //finish();
         });

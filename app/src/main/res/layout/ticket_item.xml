@@ -96,8 +96,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:backgroundTint="@color/material_dynamic_tertiary30"
-            android:text="@string/return_ticket"
-            android:textColor="@color/white" />
+            android:text="@string/return_ticket" />
 
     </LinearLayout>
 

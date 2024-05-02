@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="35dp"
-    android:layout_height="50dp"
-    app:strokeColor="@color/black"
-    app:strokeWidth="2dp"
+    android:layout_width="30dp"
+    android:layout_height="36dp"
     android:layout_margin="8dp"
-    android:focusable="true">
+    android:backgroundTint="#C6CACB"
+    android:insetTop="4dp"
+    android:insetBottom="4dp"
+    android:stateListAnimator="@null"
+    app:cornerRadius="8dp">
 
 </com.google.android.material.button.MaterialButton>

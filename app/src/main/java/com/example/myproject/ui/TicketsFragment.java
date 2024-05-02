@@ -33,8 +33,7 @@ import java.util.ArrayList;
 
 public class TicketsFragment extends Fragment {
     private FragmentTicketsBinding binding;
-    private ArrayList<Ticket> tickets = new ArrayList<>();
-    private RecyclerView recyclerView;
+    private ArrayList<Ticket> tickets;
     private TicketAdapter ticketAdapter;
 
     public TicketsFragment() {
@@ -74,6 +73,7 @@ public class TicketsFragment extends Fragment {
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        tickets = new ArrayList<>();
         loadTickets(userId);
     }
 

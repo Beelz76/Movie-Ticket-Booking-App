@@ -51,6 +51,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("SetTextI18n")
     public void setupMovieDetails() {
         Intent intent = getIntent();
         int movieId = intent.getIntExtra("movieId", 0);

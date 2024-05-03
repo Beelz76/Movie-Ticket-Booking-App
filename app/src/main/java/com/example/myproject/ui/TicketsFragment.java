@@ -121,7 +121,7 @@ public class TicketsFragment extends Fragment {
                                     tickets.add(ticket);
                                 }
                             } else {
-                                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

@@ -8,6 +8,7 @@
     tools:context=".ScreeningsActivity">
 
     <include
+        android:id="@+id/bar"
         layout="@layout/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,13 +19,13 @@
         android:id="@+id/textDateChoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="24dp"
         android:text="@string/choice_date"
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/bar" />
 
 
     <com.google.android.material.chip.ChipGroup
@@ -72,7 +73,7 @@
         android:layout_margin="16dp"
         android:height="60dp"
         android:backgroundTint="@color/primary_40"
-        android:text="@string/seat_choice"
+        android:text="@string/choice_seat"
         app:layout_constraintTop_toBottomOf="@+id/chipGroupTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -60,7 +60,6 @@ public class ProfileFragment extends Fragment {
         String userId = sharedPreferences.getString("user_id", "");
 
         if (userId.isEmpty()) {
-            hideAllViews(getView());
             navigateToLogin();
         }
 
@@ -98,17 +97,25 @@ public class ProfileFragment extends Fragment {
             password = binding.inputPassword.getText().toString();
             confirmPassword = binding.inputConfirmPassword.getText().toString();
 
-            validateInputs(fullname, login, password, confirmPassword);
+            validateInputs(fullname, login, password, confirmPassword, email);
 
-            if (!login.isEmpty() && !password.isEmpty() && !fullname.isEmpty() && !confirmPassword.isEmpty()) {
-                updateUserInfo(userId, fullname, email, login, password);
-                setFieldsEnabled(false);
-                setFieldsVisibility(false);
+            if (!login.isEmpty() && login.length() >= 4 && !password.isEmpty() && !fullname.isEmpty() && !confirmPassword.isEmpty()) {
+                if (!email.isEmpty()) {
+                    if (email.matches(("^[A-Za-z0-9+_.-]+@(.+)$"))) {
+                        updateUserInfo(userId, fullname, email, login, password);
+                        setFieldsEnabled(false);
+                        setFieldsVisibility(false);
+                    }
+                } else {
+                    updateUserInfo(userId, fullname, email, login, password);
+                    setFieldsEnabled(false);
+                    setFieldsVisibility(false);
+                }
             }
         });
     }
 
-    private void validateInputs(String fullname, String login, String password, String confirmPassword) {
+    private void validateInputs(String fullname, String login, String password, String confirmPassword, String email) {
         if (fullname.isEmpty()) {
             binding.inputLayoutFullname.setError("Заполните поле");
         } else {
@@ -117,6 +124,8 @@ public class ProfileFragment extends Fragment {
 
         if (login.isEmpty()) {
             binding.inputLayoutLogin.setError("Заполните поле");
+        } else if (login.length() < 4) {
+            binding.inputLayoutLogin.setError("Логин должен содержать не менее 4 символов");
         } else {
             binding.inputLayoutLogin.setError(null);
         }
@@ -131,6 +140,14 @@ public class ProfileFragment extends Fragment {
             binding.inputLayoutConfirmPassword.setError("Пароль не совпадает");
         } else {
             binding.inputLayoutConfirmPassword.setError(null);
+        }
+
+        if (!email.isEmpty()) {
+            if (!email.matches(("^[A-Za-z0-9+_.-]+@(.+)$"))) {
+                binding.inputLayoutEmail.setError("Неверный формат электронной почты");
+            } else {
+                binding.inputLayoutEmail.setError(null);
+            }
         }
     }
 
@@ -161,7 +178,7 @@ public class ProfileFragment extends Fragment {
                             e.printStackTrace();
                         }
                     } else {
-                        Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -185,9 +202,9 @@ public class ProfileFragment extends Fragment {
                         currentFullName = fullname;
                         currentEmail = email;
                         currentLogin = login;
-                        Toast.makeText(getActivity().getApplicationContext(), "Данные сохранены", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Данные сохранены", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -210,6 +227,7 @@ public class ProfileFragment extends Fragment {
 
     private void setFieldsVisibility(boolean visibility) {
         if (visibility){
+            binding.inputLayoutLogin.setError(null);
             binding.inputPassword.setText("");
             binding.inputConfirmPassword.setText("");
             binding.inputPassword.setVisibility(View.VISIBLE);
@@ -222,6 +240,7 @@ public class ProfileFragment extends Fragment {
             binding.buttonSave.setVisibility(View.VISIBLE);
             binding.buttonEdit.setVisibility(View.GONE);
         } else {
+            binding.inputLayoutLogin.setError(null);
             binding.inputPassword.setText("");
             binding.inputConfirmPassword.setText("");
             binding.inputPassword.setVisibility(View.GONE);
@@ -233,17 +252,6 @@ public class ProfileFragment extends Fragment {
             binding.buttonCancel.setVisibility(View.GONE);
             binding.buttonSave.setVisibility(View.GONE);
             binding.buttonEdit.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void hideAllViews(@NonNull View view) {
-        view.setVisibility(View.INVISIBLE);
-        if (view instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view;
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                View child = viewGroup.getChildAt(i);
-                hideAllViews(child);
-            }
         }
     }
 }

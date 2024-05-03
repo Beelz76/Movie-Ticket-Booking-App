@@ -106,7 +106,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketView
                     if (result.contains("Delete Ticket Success")) {
                         success = true;
                     } else {
-                        Toast.makeText(context.getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context.getApplicationContext(), "Не получилось удалить билет", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

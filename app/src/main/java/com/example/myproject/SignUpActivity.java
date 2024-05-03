@@ -29,21 +29,21 @@ public class SignUpActivity extends AppCompatActivity {
             String login = binding.inputLogin.getText().toString();
             String password = binding.inputPassword.getText().toString();
 
-            validateInputs(fullname, login, password);
+            validateInputs(fullname, login, password, email);
 
-            if (!fullname.isEmpty() && !login.isEmpty() && !password.isEmpty()) {
-                attemptSignUp(login, fullname, email, password);
+            if (!fullname.isEmpty() && !login.isEmpty() && login.length() >= 4 && !password.isEmpty()) {
+                if (!email.isEmpty()) {
+                    if (email.matches(("^[A-Za-z0-9+_.-]+@(.+)$"))) {
+                        attemptSignUp(login, fullname, email, password);
+                    }
+                } else {
+                    attemptSignUp(login, fullname, email, password);
+                }
             }
         });
     }
 
-    private void navigateToLogin() {
-        Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void validateInputs(String fullname, String login, String password) {
+    private void validateInputs(String fullname, String login, String password, String email) {
         if (fullname.isEmpty()) {
             binding.inputLayoutFullname.setError("Заполните поле");
         } else {
@@ -52,6 +52,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (login.isEmpty()) {
             binding.inputLayoutLogin.setError("Заполните поле");
+        } else if (login.length() < 4) {
+            binding.inputLayoutLogin.setError("Логин должен содержать не менее 4 символов");
         } else {
             binding.inputLayoutLogin.setError(null);
         }
@@ -60,6 +62,14 @@ public class SignUpActivity extends AppCompatActivity {
             binding.inputLayoutPassword.setError("Заполните поле");
         } else {
             binding.inputLayoutPassword.setError(null);
+        }
+
+        if (!email.isEmpty()) {
+            if (!email.matches(("^[A-Za-z0-9+_.-]+@(.+)$"))) {
+                binding.inputLayoutEmail.setError("Неверный формат электронной почты");
+            } else {
+                binding.inputLayoutEmail.setError(null);
+            }
         }
     }
 
@@ -80,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
                     saveUserId(userId);
                     navigateToMainActivity();
                 } else {
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,6 +105,12 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void navigateToMainActivity() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void navigateToLogin() {
+        Intent intent = new Intent(getApplicationContext(), LogInActivity.class);
         startActivity(intent);
         finish();
     }

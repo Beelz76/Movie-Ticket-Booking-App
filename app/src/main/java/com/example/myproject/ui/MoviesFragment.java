@@ -114,7 +114,7 @@ public class MoviesFragment extends Fragment {
                                 movies.add(movie);
                             }
                         } else {
-                            Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);

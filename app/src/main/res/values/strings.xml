@@ -37,6 +37,7 @@
     <string name="choice_date">Выберите дату</string>
     <string name="choice_time">Выберите Время</string>
     <string name="buy_ticket">Купить билет</string>
-    <string name="seat_choice">Выбрать место</string>
+    <string name="choice_seat">Выбрать место</string>
     <string name="display">Экран</string>
+    <string name="choice_screening">Выбрать сеанс</string>
 </resources>

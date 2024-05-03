@@ -97,6 +97,7 @@ public class SeatsActivity extends AppCompatActivity {
                             for (Seat seat : selectedSeats) {
                                 buyTicket(userId, String.valueOf(getIntent().getIntExtra("screeningId", 0)), String.valueOf(seat.getSeatId()));
                             }
+                            Toast.makeText(getApplicationContext(), "Успешная покупка", Toast.LENGTH_SHORT).show();
                             loadScreeningSeats(String.valueOf(getIntent().getIntExtra("screeningId", 0)), s -> {
                                 seats = s;
                                 loadSeats(seats);
@@ -178,7 +179,7 @@ public class SeatsActivity extends AppCompatActivity {
             if (putData.startPut()) {
                 if (putData.onComplete()) {
                     String result = putData.getResult();
-                    JSONArray jsonArray = null;
+                    JSONArray jsonArray;
                     ArrayList<Seat> seats = new ArrayList<>();
                     try {
                         jsonArray = new JSONArray(result);
@@ -219,7 +220,7 @@ public class SeatsActivity extends AppCompatActivity {
             if (putData.startPut() && putData.onComplete()) {
                 String result = putData.getResult();
                 if (result.equals("Create Ticket Success")) {
-                    //listener.onBuyTicketComplete();
+                    //Toast.makeText(getApplicationContext(), "Успешная покупка", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                 }

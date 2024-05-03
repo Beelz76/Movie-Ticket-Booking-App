@@ -66,7 +66,7 @@ public class LogInActivity extends AppCompatActivity {
                     saveUserId(userId);
                     navigateToMainActivity();
                 } else {
-                    Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
                 }
             }
         });

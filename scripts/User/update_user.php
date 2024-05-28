@@ -20,6 +20,7 @@ try {
     $fullname = $_POST['Fullname'];
     $login = $_POST['Login'];
     $password = $_POST['Password'];
+    $email = $_POST['Email'];
 
     if (strlen($login) < 4) {
         echo "Login must be at least 4 characters long";
